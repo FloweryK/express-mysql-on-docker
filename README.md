@@ -11,7 +11,7 @@
 # 해야 할 것
 
 - [x]  `docker-compose.yml`에서 두 서비스를 연결하기
-- [x]  express 코드에서 mysql 서버에 연결하도록 수정하기
+- [x]  `app.js` 에서 mysql 서버에 연결하도록 수정하기
 
 </br>
 
@@ -50,7 +50,7 @@ services:
 
 </br>
 
-- express 코드에서 mysql 서버에 연결하도록 수정하기
+- `app.js`에서 mysql 서버에 연결하도록 수정하기
 
 ```jsx
 /* library */
