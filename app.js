@@ -1,26 +1,28 @@
 /* library */
 const express = require('express')
-const mysql = require('mysql')
 const logger = require('morgan')
 
 /* app */
 const app = express()
-const app_config = require('./config/app-config')
-const port = app_config.port
+const port = 3000
 
 /* mysql */
-const db_config = require('./config/db-config')
-const connection = mysql.createConnection(db_config)
+const mysql = require('mysql')
+const connection = mysql.createConnection({
+	"host": process.env.MYSQL_HOST,
+	"user": process.env.MYSQL_USER,
+	"password": process.env.MYSQL_PASSWORD
+})
 
 /* middleware */
 app.use(logger('dev'))
 
+app.get('/', (req, res) => res.status(200).send('hello docker world!'))
+
 app.get('/test', (req, res) => {
-	const sql = "select * from orders"
-	connection.query(sql, (err, rows) => {
+	connection.query("show databases", (err, rows) => {
 		if (err) {
-			console.err(err)
-			res.status(400).send()
+			res.status(400).send(err)
 		} else {
 			res.status(200).send(rows)
 		}
